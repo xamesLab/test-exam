@@ -108,7 +108,7 @@ class Modal {
         modalView.querySelector('.modal__field_names').innerHTML = namesStr;
 
         if(isEdit) {
-            console.log(data);
+            const [day, month, year] = data.delivery_date?.split('.') || ['', '', ''];
             
             modalView.classList.add('modal-view_edit');
             modalView.querySelectorAll('.modal__field').forEach(el => el.classList.remove('modal__field_text'));
@@ -116,6 +116,7 @@ class Modal {
             modalView.querySelector('.modal__field_phone').querySelector('input').value = data.phone;
             modalView.querySelector('.modal__field_email').querySelector('input').value = data.email;
             modalView.querySelector('.modal__field_adress').querySelector('input').value = data.adress;
+            modalView.querySelector('.modal__field_d-date').querySelector('input').value =  `${year}-${month}-${day}`;
             modalView.querySelector('.modal__field_d-time').querySelector('select').value = data.delivery_interval;
             modalView.querySelector('.modal__field_comment').querySelector('textarea').value = data.comment;
         } else {
