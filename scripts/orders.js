@@ -56,6 +56,12 @@ class Orders {
             }
         });
 
+        window.addEventListener('Order:update', async(e) => {
+            this.orders = await api.getOrders();
+            await this.getOrdersData();
+            this.setOrders();
+        });
+
         this.initDeleteModal();     
         this.initViewModal();     
     }
@@ -105,7 +111,6 @@ class Orders {
 
     initViewModal() {
         const closeBtns = this.modalViewEl.querySelectorAll('.modal-close');
-        const submitBtn = this.modalViewEl.querySelector('.modal-submit');
 
         closeBtns.forEach(el => {
             el.addEventListener('click', (e) => {
@@ -159,7 +164,7 @@ class Orders {
 
     setOrders() {
         this.container.innerHTML = '';
-        
+
         this.orders.forEach((order, index) => {
             const [year, month, day] = order.delivery_date.split('-'); // Разбиваем строку на части
             const formattedDate = `${day}.${month}.${year}`; // Формируем строку в формате dd.mm.yyyy
