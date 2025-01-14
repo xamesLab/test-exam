@@ -6,9 +6,9 @@ class Api {
 
     // запрос списка товаров
     async getItems() {
-        const req = `/exam-2024-1/api/goods?api_key=${this.key}`;
+        const req = `/api/goods?api_key=${this.key}`;
         try {
-            const response = await fetch(this.url + req, {
+            const response = await fetch(req, {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json', // Указываем формат данных
